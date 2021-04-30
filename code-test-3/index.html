@@ -1,303 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 <head>
-    <meta charset="UTF-8">
-    <title>Code test 3</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=B612&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+<title>Cards</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style>
+body { 
+  display: grid;
+  font-family: sans-serif;
+  grid-template-areas: 
+    "header"
+    "nav"
+    "hero"
+    "article"
+    "footer";
+  grid-template-rows: 80px 70px 70px 1fr 70px;  
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  }  
+header, footer, article, nav, div {
+  padding: 1.2em;
+  background: #CCC;
+  }
+#pageHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  grid-area: header;
+  }
+  #pageHeader > div {
+    background: #bada55;
+  }
+
+#pageFooter {
+  grid-area: footer;
+  }
+#mainArticle { 
+  grid-area: article;
+  text-align: center;
+  }
+
+  #mainNav { 
+  grid-area: nav; 
+  } 
+#colorPicker { 
+  grid-area: colorPicker; 
+  }
+#hero { 
+  grid-area: hero; 
+  } 
+
+  /* Stack the layout on small devices/viewports. */
+@media all and (max-width: 575px) {
+  body { 
+    grid-template-areas: 
+      "header"
+      "nav"
+      "hero"
+      "article"
+      "footer";
+    grid-template-rows: 80px 70px 70px 1fr 70px;  
+    grid-template-columns: 1fr;
+ }
+}
+
+/* Card styles */
+.card {
+    background: aliceblue;
+    color: #777;
+    cursor: pointer;
+    padding: 10px;
+    width: 50%;
+    text-align: left;
+    font-size: 15px;
+    margin: 0 auto;
+    height: 30px;
+}
+
+.content {
+    padding: 0 10px;
+    overflow: hidden;
+    background-color: aliceblue;
+    height: 100px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.content.closed {
+    animation: 1s linear;
+    animation-name: goAway;
+    height: 0px;
+}
+
+.content.open {
+    animation: 1s linear;
+    animation-name: openCard;
+    display:block;
+}
+
+.content.closed, .content.open {
+    margin-bottom: 1rem;
+}
+
+@keyframes goAway {
+    0% {height: 100px;}
+    25% {height: 75px;}
+    50% {height: 50px;}
+    75% {height: 25px;}
+    100% {height: 0px;}
+}
+
+@keyframes openCard {
+    0% {height: 0px;}
+    25% {height: 25px;}
+    50% {height: 50px;}
+    75% {height: 75px;}
+    100% {height: 100px;}
+}
+
+</style>
 </head>
 <body>
-<!--=========== card 1 ===========-->
-<div class="card" id="card-1">
-    <div class="main-content" data-card-id="card-1">
-        <div class="collapsable-card-content">
-            <div class="card-image">
-                <img src="https://picsum.photos/300/300" alt="alternative text">
-            </div>
-            <div class="short-description">
-                <b>sd</b> Ab asperiores aspernatur atque autem deleniti dolore, doloribus, eaque earum eos error esse
-                fugiat ipsa molestias odit officia quidem unde velit voluptate...
-            </div>
-        </div>
+  <header id="pageHeader"><div>Logo</div><div>Top Nav</div></header>
+  <nav id="mainNav">Where do you want to go today?</nav>
+  <article id="mainArticle">
+            <div class="card">Trigger for expansion</div>
+            <div class="content closed"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non enim aliquam eligendi repellat laborum, voluptatibus ipsum! Quas aperiam eius fugit placeat maiores quod ab, natus ipsam ea molestiae, sed dicta!</p></div>
+            <div class="card">Trigger for expansion</div>
+            <div class="content closed"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non enim aliquam eligendi repellat laborum, voluptatibus ipsum! Quas aperiam eius fugit placeat maiores quod ab, natus ipsam ea molestiae, sed dicta!</p></div>
+            <div class="card">Trigger for expansion</div>
+            <div class="content closed"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non enim aliquam eligendi repellat laborum, voluptatibus ipsum! Quas aperiam eius fugit placeat maiores quod ab, natus ipsam ea molestiae, sed dicta!</p></div>
 
-        <div class="full-description collapsable">
-            <b>full description</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut ducimus eos
-            iste itaque mollitia
-            quia sit voluptas. Alias aspernatur dignissimos doloribus eaque et minima molestiae nisi obcaecati quo
-            ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores deleniti exercitationem
-            in odit qui tenetur ullam voluptatum. Asperiores dolorem eius error explicabo ipsam laboriosam nam
-            perferendis quia reprehenderit soluta.
-        </div>
-    </div>
-    <div class="additional-content">
-        <div class="actions collapsable">
-            <button class="action-toggle btn btn-success" data-action-id="1" data-card-id="card-1">
-                action 1
-            </button>
-            <button class="action-toggle btn btn-success" data-action-id="2" data-card-id="card-1">
-                action 2
-            </button>
-        </div>
-        <div class="content-item text1 collapsable action-toggle" data-action-id="1" data-card-id="card-1">
-            <p>
-                <b>text 1</b> L Adipisci aliquid animi culpa, deleniti dolore
-                earum eligendi eveniet excepturi id inventore mollitia neque nostrum numquam quis quo repellat tempore
-                totam voluptatum! A accusamus culpa, natus quaerat repellendus reprehenderit rerum. Architecto atque
-                consectetur, corporis deserunt dolore dolores enim error eveniet itaque minus nam nobis nulla quidem
-                suscipit, veritatis! Aut facilis provident veritatis. Deleniti doloribus labore nulla temporibus totam.
-                Aliquid animi cumque esse exercitationem fuga ipsam ipsum labore laboriosam laborum molestiae nam
-                nesciunt perferendis perspiciatis quam, quasi quidem quisquam temporibus ut voluptas voluptatum.
-            </p>
-        </div>
-        <div class="content-item text2 collapsable action-toggle" data-action-id="2" data-card-id="card-1">
-            <p>
-                <b>text 2</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, facere, nostrum. Ab
-                consectetur
-                exercitationem molestiae nobis omnis quibusdam, repudiandae! Commodi earum excepturi harum libero modi
-                numquam quas reprehenderit ut veritatis. Aliquid, aperiam architecto atque autem, beatae corporis
-                dolorum eligendi fuga impedit minus nobis quae
-                quas quidem ratione rerum saepe soluta suscipit? Asperiores assumenda, consectetur earum magni natus
-                praesentium suscipit voluptatibus.
-            </p>
-        </div>
-
-    </div>
-    <div class="bouncer"></div>
-</div>
-<!--=========== end of card 1 ===========-->
-<!--=========== card 2 ===========-->
-<div class="card" id="card-2">
-    <div class="main-content" data-card-id="card-2">
-        <div class="collapsable-card-content">
-            <div class="card-image">
-                <img src="https://picsum.photos/300/300" alt="alternative text">
-            </div>
-            <div class="short-description">
-                <b>sd</b> Ab asperiores aspernatur atque autem deleniti dolore, doloribus, eaque earum eos error esse
-                fugiat ipsa molestias odit officia quidem unde velit voluptate...
-            </div>
-        </div>
-
-        <div class="full-description collapsable">
-            <b>full description</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut ducimus eos
-            iste itaque mollitia
-            quia sit voluptas. Alias aspernatur dignissimos doloribus eaque et minima molestiae nisi obcaecati quo
-            ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores deleniti exercitationem
-            in odit qui tenetur ullam voluptatum. Asperiores dolorem eius error explicabo ipsam laboriosam nam
-            perferendis quia reprehenderit soluta.
-        </div>
-    </div>
-    <div class="additional-content">
-        <div class="actions collapsable">
-            <button class="action-toggle btn btn-success" data-action-id="1" data-card-id="card-2">
-                action 1
-            </button>
-            <button class="action-toggle btn btn-success" data-action-id="2" data-card-id="card-2">
-                action 2
-            </button>
-        </div>
-        <div class="content-item text1 collapsable action-toggle" data-action-id="1" data-card-id="card-2">
-            <p>
-                <b>text 1</b> L Adipisci aliquid animi culpa, deleniti dolore
-                earum eligendi eveniet excepturi id inventore mollitia neque nostrum numquam quis quo repellat tempore
-                totam voluptatum! A accusamus culpa, natus quaerat repellendus reprehenderit rerum. Architecto atque
-                consectetur, corporis deserunt dolore dolores enim error eveniet itaque minus nam nobis nulla quidem
-                suscipit, veritatis! Aut facilis provident veritatis. Deleniti doloribus labore nulla temporibus totam.
-                Aliquid animi cumque esse exercitationem fuga ipsam ipsum labore laboriosam laborum molestiae nam
-                nesciunt perferendis perspiciatis quam, quasi quidem quisquam temporibus ut voluptas voluptatum.
-            </p>
-        </div>
-        <div class="content-item text2 collapsable action-toggle" data-action-id="2" data-card-id="card-2">
-            <p>
-                <b>text 2</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, facere, nostrum. Ab
-                consectetur
-                exercitationem molestiae nobis omnis quibusdam, repudiandae! Commodi earum excepturi harum libero modi
-                numquam quas reprehenderit ut veritatis. Aliquid, aperiam architecto atque autem, beatae corporis
-                dolorum eligendi fuga impedit minus nobis quae
-                quas quidem ratione rerum saepe soluta suscipit? Asperiores assumenda, consectetur earum magni natus
-                praesentium suscipit voluptatibus.
-            </p>
-        </div>
-
-    </div>
-    <div class="bouncer"></div>
-</div>
-<!--=========== end of card 2 ===========-->
-<!--=========== card 3 ===========-->
-<div class="card" id="card-3">
-    <div class="main-content" data-card-id="card-3">
-        <div class="collapsable-card-content">
-            <div class="card-image">
-                <img src="https://picsum.photos/300/300" alt="alternative text">
-            </div>
-            <div class="short-description">
-                <b>sd</b> Ab asperiores aspernatur atque autem deleniti dolore, doloribus, eaque earum eos error esse
-                fugiat ipsa molestias odit officia quidem unde velit voluptate...
-            </div>
-        </div>
-
-        <div class="full-description collapsable">
-            <b>full description</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut ducimus eos
-            iste itaque mollitia
-            quia sit voluptas. Alias aspernatur dignissimos doloribus eaque et minima molestiae nisi obcaecati quo
-            ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores deleniti exercitationem
-            in odit qui tenetur ullam voluptatum. Asperiores dolorem eius error explicabo ipsam laboriosam nam
-            perferendis quia reprehenderit soluta.
-        </div>
-    </div>
-    <div class="additional-content">
-        <div class="actions collapsable">
-            <button class="action-toggle btn" data-action-id="1" data-card-id="card-3">
-                action 1
-            </button>
-            <button class="action-toggle btn" data-action-id="2" data-card-id="card-3">
-                action 2
-            </button>
-        </div>
-        <div class="content-item text1 collapsable action-toggle" data-action-id="1" data-card-id="card-3">
-            <p>
-                <b>text 1</b> L Adipisci aliquid animi culpa, deleniti dolore
-                earum eligendi eveniet excepturi id inventore mollitia neque nostrum numquam quis quo repellat tempore
-                totam voluptatum! A accusamus culpa, natus quaerat repellendus reprehenderit rerum. Architecto atque
-                consectetur, corporis deserunt dolore dolores enim error eveniet itaque minus nam nobis nulla quidem
-                suscipit, veritatis! Aut facilis provident veritatis. Deleniti doloribus labore nulla temporibus totam.
-                Aliquid animi cumque esse exercitationem fuga ipsam ipsum labore laboriosam laborum molestiae nam
-                nesciunt perferendis perspiciatis quam, quasi quidem quisquam temporibus ut voluptas voluptatum.
-            </p>
-        </div>
-        <div class="content-item text2 collapsable action-toggle" data-action-id="2" data-card-id="card-3">
-            <p>
-                <b>text 2</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, facere, nostrum. Ab
-                consectetur
-                exercitationem molestiae nobis omnis quibusdam, repudiandae! Commodi earum excepturi harum libero modi
-                numquam quas reprehenderit ut veritatis. Aliquid, aperiam architecto atque autem, beatae corporis
-                dolorum eligendi fuga impedit minus nobis quae
-                quas quidem ratione rerum saepe soluta suscipit? Asperiores assumenda, consectetur earum magni natus
-                praesentium suscipit voluptatibus.
-            </p>
-        </div>
-
-    </div>
-    <div class="bouncer"></div>
-</div>
-<!--=========== end of card 3 ===========-->
-<!--=========== card 4 ===========-->
-<div class="card" id="card-4">
-    <div class="main-content" data-card-id="card-4">
-        <div class="collapsable-card-content">
-            <div class="card-image">
-                <img src="https://picsum.photos/300/300" alt="alternative text">
-            </div>
-            <div class="short-description">
-                <b>sd</b> Ab asperiores aspernatur atque autem deleniti dolore, doloribus, eaque earum eos error esse
-                fugiat ipsa molestias odit officia quidem unde velit voluptate...
-            </div>
-        </div>
-
-        <div class="full-description collapsable">
-            <b>full description</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut ducimus eos
-            iste itaque mollitia
-            quia sit voluptas. Alias aspernatur dignissimos doloribus eaque et minima molestiae nisi obcaecati quo
-            ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores deleniti exercitationem
-            in odit qui tenetur ullam voluptatum. Asperiores dolorem eius error explicabo ipsam laboriosam nam
-            perferendis quia reprehenderit soluta.
-        </div>
-    </div>
-    <div class="additional-content">
-        <div class="actions collapsable">
-            <button class="action-toggle btn btn-success" data-action-id="1" data-card-id="card-4">
-                action 1
-            </button>
-            <button class="action-toggle btn btn-success" data-action-id="2" data-card-id="card-4">
-                action 2
-            </button>
-        </div>
-        <div class="content-item text1 collapsable action-toggle" data-action-id="1" data-card-id="card-4">
-            <p>
-                <b>text 1</b> L Adipisci aliquid animi culpa, deleniti dolore
-                earum eligendi eveniet excepturi id inventore mollitia neque nostrum numquam quis quo repellat tempore
-                totam voluptatum! A accusamus culpa, natus quaerat repellendus reprehenderit rerum. Architecto atque
-                consectetur, corporis deserunt dolore dolores enim error eveniet itaque minus nam nobis nulla quidem
-                suscipit, veritatis! Aut facilis provident veritatis. Deleniti doloribus labore nulla temporibus totam.
-                Aliquid animi cumque esse exercitationem fuga ipsam ipsum labore laboriosam laborum molestiae nam
-                nesciunt perferendis perspiciatis quam, quasi quidem quisquam temporibus ut voluptas voluptatum.
-            </p>
-        </div>
-        <div class="content-item text2 collapsable action-toggle" data-action-id="2" data-card-id="card-4">
-            <p>
-                <b>text 2</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, facere, nostrum. Ab
-                consectetur
-                exercitationem molestiae nobis omnis quibusdam, repudiandae! Commodi earum excepturi harum libero modi
-                numquam quas reprehenderit ut veritatis. Aliquid, aperiam architecto atque autem, beatae corporis
-                dolorum eligendi fuga impedit minus nobis quae
-                quas quidem ratione rerum saepe soluta suscipit? Asperiores assumenda, consectetur earum magni natus
-                praesentium suscipit voluptatibus.
-            </p>
-        </div>
-
-    </div>
-    <div class="bouncer"></div>
-</div>
-<!--=========== end of card 4===========-->
-<!--=========== card 5 ===========-->
-<div class="card" id="card-5">
-    <div class="main-content" data-card-id="card-5">
-        <div class="collapsable-card-content">
-            <div class="card-image">
-                <img src="https://picsum.photos/300/300" alt="alternative text">
-            </div>
-            <div class="short-description">
-                <b>sd</b> Ab asperiores aspernatur atque autem deleniti dolore, doloribus, eaque earum eos error esse
-                fugiat ipsa molestias odit officia quidem unde velit voluptate...
-            </div>
-        </div>
-
-        <div class="full-description collapsable">
-            <b>full description</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut ducimus eos
-            iste itaque mollitia
-            quia sit voluptas. Alias aspernatur dignissimos doloribus eaque et minima molestiae nisi obcaecati quo
-            ullam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores deleniti exercitationem
-            in odit qui tenetur ullam voluptatum. Asperiores dolorem eius error explicabo ipsam laboriosam nam
-            perferendis quia reprehenderit soluta.
-        </div>
-    </div>
-    <div class="additional-content">
-        <div class="actions collapsable">
-            <button class="action-toggle btn btn-success" data-action-id="1" data-card-id="card-5">
-                action 1
-            </button>
-            <button class="action-toggle btn btn-success" data-action-id="2" data-card-id="card-5">
-                action 2
-            </button>
-        </div>
-        <div class="content-item text1 collapsable action-toggle" data-action-id="1" data-card-id="card-5">
-            <p>
-                <b>text 1</b> L Adipisci aliquid animi culpa, deleniti dolore
-                earum eligendi eveniet excepturi id inventore mollitia neque nostrum numquam quis quo repellat tempore
-                totam voluptatum! A accusamus culpa, natus quaerat repellendus reprehenderit rerum. Architecto atque
-                consectetur, corporis deserunt dolore dolores enim error eveniet itaque minus nam nobis nulla quidem
-                suscipit, veritatis! Aut facilis provident veritatis. Deleniti doloribus labore nulla temporibus totam.
-                Aliquid animi cumque esse exercitationem fuga ipsam ipsum labore laboriosam laborum molestiae nam
-                nesciunt perferendis perspiciatis quam, quasi quidem quisquam temporibus ut voluptas voluptatum.
-            </p>
-        </div>
-        <div class="content-item text2 collapsable action-toggle" data-action-id="2" data-card-id="card-5">
-            <p>
-                <b>text 2</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, facere, nostrum. Ab
-                consectetur
-                exercitationem molestiae nobis omnis quibusdam, repudiandae! Commodi earum excepturi harum libero modi
-                numquam quas reprehenderit ut veritatis. Aliquid, aperiam architecto atque autem, beatae corporis
-                dolorum eligendi fuga impedit minus nobis quae
-                quas quidem ratione rerum saepe soluta suscipit? Asperiores assumenda, consectetur earum magni natus
-                praesentium suscipit voluptatibus.
-            </p>
-        </div>
-
-    </div>
-    <div class="bouncer"></div>
-</div>
-<!--=========== end of card 5 ===========-->
-<script src="index.js"></script>
+        </article>
+  <div id="hero">I need a Hero</div>
+  <footer id="pageFooter">Don't make me break my Footer off in your...</footer>
 </body>
-</html>
+<script>
+    var col1 = document.getElementsByClassName("card");
+    var i;
+
+    for (i = 0; i < col1.length; i++) {
+        col1[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+
+            if (content.classList.contains("open")) {
+                content.classList.add("closed");
+                content.classList.remove("open");
+            } else {
+                content.classList.remove("closed");
+                content.classList.add("open"); 
+            }
+        });
+    }
+</script>
+<html>
