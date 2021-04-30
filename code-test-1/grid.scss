@@ -1,0 +1,53 @@
+// number of cells in the grid
+$grid-cols: 6;
+
+// array of breakpoints and their suffixes
+$grid-breakpoints: ( sm: 512px, md: 768px, lg: 1024px);
+// $grid-breakpoints: ( xs: 320px, sm: 512px, md: 768px, lg: 1024px, xl: 1366px, xxl: 1920px);
+
+// container's max width
+$max-container-with: 1366px;
+
+// creare a media query block for a $breakpoint
+@mixin create-mquery($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+      @content
+  }
+}
+
+// create a set of col classes for a given breakpoint
+@mixin create-col-classes($modifier, $breakpoint) {
+  @include create-mquery($breakpoint) {
+    @for $i from 1 through $grid-cols {
+      &-col-#{$modifier}-#{$i} {
+        flex-basis: (100 / ($grid-cols / $i) ) * 1%
+      }
+    }
+  }
+}
+
+// use flex for display
+@mixin row-display {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+// container classes
+.container {
+  max-width: $max-container-with;
+  margin: 0 auto;
+
+  &-row {
+    @include row-display
+  }
+
+  &-col {
+    @include row-display
+  }
+
+// generate a set of classes for each breakpoint from the $grid-breakpoints array
+  @each $modifier, $breakpoint in $grid-breakpoints {
+    @include create-col-classes($modifier, $breakpoint);
+  }
+}

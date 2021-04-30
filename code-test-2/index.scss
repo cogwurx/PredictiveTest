@@ -1,0 +1,80 @@
+$skeleton-block-background-color: #f7f7f7; //shade of gray
+
+// title style
+.title-main {
+  height: 1em;
+  padding-left: 5em;
+  padding-right: 5em;
+  overflow: hidden;
+  text-align: center;
+}
+
+// title skeleton style (during loading)
+.title-container.loading {
+  width: 40em;
+  height: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+// image skeleton style (during loading)
+.img-container.loading {
+  width: 60em;
+  height: 40em;
+}
+
+// description skeleton style (during loading)
+.description-container.loading {
+  width: 60em;
+  height: 3em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+// image dimensions
+#big-img {
+  width: 60em;
+  height: 40em;
+}
+
+// style and width for all elements
+.content-item {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  width: 60em;
+}
+
+// animation keyframes
+@keyframes load {
+  from {
+    left: -20em;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+// skeleton box displayed during loading (this class will be removed after loading finished)
+.loading {
+  box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15);
+  border-radius: 0.5em;
+  background-color: $skeleton-block-background-color;
+
+// the animated gradient
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -20em;
+    top: 0;
+    height: 100%;
+    width: 20em;
+    background: linear-gradient(to right, transparent 0%, #e6e6e6 50%, transparent 100%);
+    animation: load 0.8s linear infinite;
+  }
+
+  & > * {
+    display: none;
+  }
+}

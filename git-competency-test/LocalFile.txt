@@ -1,0 +1,7 @@
+This is a local file
+feature 1
+feature 2
+dev line 1
+//resolved conflict
+feature 3
+feature 4
