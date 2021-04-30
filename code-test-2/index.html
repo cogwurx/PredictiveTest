@@ -1,20 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 <head>
-    <meta charset="UTF-8">
-    <title>code test 2</title>
-    <link rel="stylesheet" href="./index.css">
+<title>Loader</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style>
+body { 
+  display: grid;
+  grid-template-areas: 
+    "header"
+    "nav"
+    "hero"
+    "article"
+    "footer";
+  grid-template-rows: 80px 70px 70px 1fr 70px;  
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  }  
+header, footer, article, nav, div {
+  padding: 1.2em;
+  background: #CCC;
+  }
+#pageHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  grid-area: header;
+  }
+  #pageHeader > div {
+    background: #bada55;
+  }
+
+#pageFooter {
+  grid-area: footer;
+  }
+#mainArticle { 
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  grid-area: article;      
+  }
+
+  #mainNav { 
+  grid-area: nav; 
+  } 
+#colorPicker { 
+  grid-area: colorPicker; 
+  }
+#hero { 
+  grid-area: hero; 
+  } 
+#mainArticle > div {
+  background: #03cfff;
+}  
+/* Stack the layout on small devices/viewports. */
+@media all and (max-width: 575px) {
+  body { 
+    grid-template-areas: 
+      "header"
+      "nav"
+      "hero"
+      "article"
+      "footer";
+    grid-template-rows: 80px 70px 70px 1fr 70px;  
+    grid-template-columns: 1fr;
+ }
+}
+/* Loader CSS */
+.loader {
+    width: 16em;
+    height: 8em;
+    position: relative;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.loader::before {
+    content: '';
+    position: absolute;
+    bottom:0;
+    width: inherit;
+    height: 0.2em;
+    background-color: #777;
+}
+
+.loader .loaderTxt {
+    position: relative;
+    font-family: sans-serif;
+    color: #888;
+    background: none;
+    top: 5em;
+}
+
+.loader span {
+    position:absolute;
+    width: 5%;
+    height: 10%;
+    background-color: #777;
+    border-radius: 50%;
+    bottom: 0.2em;
+    left: -5%;
+    animation: 3s linear infinite;
+    transform-origin: 50% -3em;
+    animation-name: catchUp;
+}
+
+.loader span:nth-child(2) {animation-delay: 0.25s;}
+.loader span:nth-child(3) {animation-delay: 0.5s;}
+
+@keyframes catchUp {
+    0% {left: -15%;}
+    25% {left: 25%;}
+    50% {left: 50%;}
+    75% {left: 75%;}
+    100% {left: 104%;}
+}
+
+</style>
 </head>
-<body class="content">
-<div class="loading content-item title-container">
-    <h2 id="main-title" class="title-main"></h2>
-</div>
-<div class="loading content-item img-container">
-    <img src="https://picsum.photos/5000/3000" alt="alt text" id="big-img">
-</div>
-<div class="loading content-item description-container">
-    <p id="secondary-description"></p>
-</div>
+<body>
+  <header id="pageHeader"><div>Logo</div><div>Top Nav</div></header>
+  <nav id="mainNav">Where do you want to go today?</nav>
+  <article id="mainArticle">
+      <div><h1>Welcome Message</h1></div>
+      <div>Quicklinks
+          <div class="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <div class="loaderTxt">Catching Up</div>
+          </div>
+      </div>
+      <div>Dashboard</div>
+      <div>Dashboard2</div>
+  </article>
+  <div id="hero">I need a Hero</div>
+  <footer id="pageFooter">Don't make me break my Footer off in your...</footer>
 </body>
-<script src="./index.js"></script>
-</html>
