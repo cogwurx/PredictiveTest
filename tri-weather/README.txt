@@ -1,0 +1,1 @@
+We don't use Angular at Healthx. Had some experience with it 4 years ago when Cory taught at 1150 Coding. Haven't used it professionally since. 
